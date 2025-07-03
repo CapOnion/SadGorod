@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class drag : MonoBehaviour
 {
+    [SerializeField]
+    private ObjectsData objectData;
+
+    [SerializeField]
+    private Recepies recepies;
+
     private Vector2 mousePosition;
 
     private float offsetX, offsetY;
@@ -36,26 +42,13 @@ public class drag : MonoBehaviour
     {
         string thisGameobjectName;
         string collisionGameobjectName;
-
-        //thisGameobjectName = gameObject.name.Substring(0, name.IndexOf("_"));
-        thisGameobjectName = gameObject.name;
-        //collisionGameobjectName = collision.gameObject.name.Substring(0, name.IndexOf("_"));
-        collisionGameobjectName = collision.gameObject.name;
-        print(collisionGameobjectName);
-        print(thisGameobjectName);
-        if (mouseButtonReleased && thisGameobjectName == "Dirt_object(Clone)" &&  collisionGameobjectName == "Hoe_object(Clone)")
-        {
-            Instantiate(Resources.Load("Field_0_object"), transform.position, Quaternion.identity);
-            mouseButtonReleased = false;
-            Destroy(collision.gameObject);
+    
+        thisGameobjectName = objectData.PrefabName;
+        collisionGameobjectName = collision.GetComponent<drag>().objectData.PrefabName;
+        
+        if (recepies.SpawnObject(thisGameobjectName, collisionGameobjectName)){
             Destroy(gameObject);
-        }
-        else if (mouseButtonReleased && thisGameobjectName == "Field_0_object(Clone)" && collisionGameobjectName == "Seeds_Blue_0_object(Clone)")
-        {
-            Instantiate(Resources.Load("Grass_object"), transform.position, Quaternion.identity);
-            mouseButtonReleased = false;
             Destroy(collision.gameObject);
-            Destroy(gameObject);
         }
     }
  
