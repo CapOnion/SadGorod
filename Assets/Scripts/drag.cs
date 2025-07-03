@@ -45,8 +45,9 @@ public class drag : MonoBehaviour
     
         thisGameobjectName = objectData.PrefabName;
         collisionGameobjectName = collision.GetComponent<drag>().objectData.PrefabName;
-        
-        if (recepies.SpawnObject(thisGameobjectName, collisionGameobjectName)){
+        Debug.Log(thisGameobjectName);
+        Debug.Log(collisionGameobjectName);
+        if (recepies.SpawnObject(thisGameobjectName, collisionGameobjectName, transform.position)){
             Destroy(gameObject);
             Destroy(collision.gameObject);
         }
