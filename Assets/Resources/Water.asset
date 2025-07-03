@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01cd6a28d81845dbbdff0d27c81b3a4, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
-  prefabName: 
+  prefabName: Water
