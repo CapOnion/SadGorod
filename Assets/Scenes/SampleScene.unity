@@ -445,8 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _image: {fileID: 1448341335}
-  _duration: 3
-  _targetColor: {r: 0, g: 0.016628504, b: 1, a: 1}
+  _duration: 1
   _startColor: {r: 1, g: 0, b: 0.0082035065, a: 1}
 --- !u!4 &774321501
 Transform:
