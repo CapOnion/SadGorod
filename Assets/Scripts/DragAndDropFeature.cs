@@ -1,12 +1,9 @@
 using UnityEngine;
 
-public class drag : MonoBehaviour
+public class DragAndDropFeature : MonoBehaviour
 {
     [SerializeField]
     private ObjectsData objectData;
-
-    [SerializeField]
-    private Recepies recepies;
 
     private Vector2 mousePosition;
 
@@ -38,19 +35,16 @@ public class drag : MonoBehaviour
         transform.SetParent(parentAfterDrag);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        string thisGameobjectName;
-        string collisionGameobjectName;
-    
-        thisGameobjectName = objectData.PrefabName;
-        collisionGameobjectName = collision.GetComponent<drag>().objectData.PrefabName;
-        Debug.Log(thisGameobjectName);
-        Debug.Log(collisionGameobjectName);
-        if (recepies.SpawnObject(thisGameobjectName, collisionGameobjectName, transform.position)){
+        Debug.Log("Triggered by " + collision + " + " + gameObject);
+        RecipeManager recipeManager = FindFirstObjectByType<RecipeManager>();
+        GameObject objectToSpawn = recipeManager.GetResult(objectData, collision.GetComponent<DragAndDropFeature>().objectData);
+        if (objectToSpawn != null)
+        {
             Destroy(gameObject);
             Destroy(collision.gameObject);
-        }
+            Instantiate(objectToSpawn, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+        }    
     }
- 
 }

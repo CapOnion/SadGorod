@@ -3,11 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item")]
 public class ObjectsData : ScriptableObject
 {
-    [SerializeField] string prefabName;
+    public GameObject _prefabName;
     
-    public string PrefabName{
+    public GameObject PrefabName{
         get {
-            return prefabName;
+            return _prefabName;
         }
     }
 }
